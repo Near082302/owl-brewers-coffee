@@ -17,6 +17,7 @@
   /* 10% ACCENT (Logo Owl Black & Pure White for High Contrast CTAs) */
   --chocolate: #111A13;        /* Deep Forest Black (From Logo Owl) */
   --gold: #FFFFFF;             /* Replaced Orange with Pure Crisp White / Off-White */
+  --star-gold: #FFC107;
 
   /* Layout Constants */
   --card-radius: 16px;
@@ -735,7 +736,7 @@ body {
   font-size: 0.95rem;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   line-height: 1;
   transition: var(--transition-smooth);
 }
@@ -1512,6 +1513,17 @@ body {
   font-weight: 700;
   color: var(--primary);
   font-size: 0.95rem;
+}
+
+.badge-favorite-icon,
+.star-rating i,
+.fa-star {
+  color: var(--star-gold) !important;
+}
+
+.card-badge .badge-favorite-icon,
+.card-badge .fa-star {
+  color: #F59E0B !important; /* Deep Golden Amber */
 }
 
 /* ===========================================================================
