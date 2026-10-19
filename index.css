@@ -2,24 +2,21 @@
 /* ===========================================================================
    1. COLOR PALETTE DEFINITION & GLOBAL VARIABLES (STRICTLY PRESERVED)
    =========================================================================== */
-/* ===========================================================================
-   1. OWL BREWERS COFFEE - BRAND COLOR PALETTE DEFINITION
-   =========================================================================== */
 :root {
   /* 60% DOMINANT (Clean Base & Neutral Backgrounds) */
-  --bg-color: #F8FAF7;         /* Soft Off-White / Mint Cream Page Background */
-  --alt-bg: #EAF2EB;           /* Gentle Sage Section Dividers */
-  --card-bg: #FFFFFF;          /* Crisp White Cards */
-  --text-dark: #222222;        /* High-Legibility Dark Charcoal Text */
+  --bg-color: #F7FBF8;         /* Soft Creamy Off-White */
+  --alt-bg: #E8F3EB;           /* Light Sage Section Divider */
+  --card-bg: #FFFFFF;          /* Pure White Cards */
+  --text-dark: #121A14;        /* Deep Charcoal Body Text */
 
-  /* 30% SECONDARY (Owl Green Brand Colors) */
-  --primary: #3B8C4F;          /* Rich Leaf/Mint Green (Navbar, Headers, Accents) */
-  --secondary: #2C6B3C;        /* Darker Green for Hover States & Focused Elements */
-  --light-accent: #C2E3C9;     /* Light Mint Borders & Subtle Backdrops */
+  /* 30% SECONDARY (Owl Mint Green Brand Colors) */
+  --primary: #59C378;          /* Bright Vibrant Mint Green (From Logo Ring) */
+  --secondary: #3B9A56;        /* Deep Mint Green for Hover States */
+  --light-accent: #C7ECCE;     /* Soft Mint Accents & Borders */
 
-  /* 10% ACCENT (High Contrast Coffee Brown & Warm Gold) */
-  --chocolate: #2D1C12;        /* Rich Espresso Dark Brown for Primary Buttons */
-  --gold: #D97724;             /* Warm Amber Gold for Badges, Stars & Highlights */
+  /* 10% ACCENT (Logo Owl Black & Pure White for High Contrast CTAs) */
+  --chocolate: #111A13;        /* Deep Forest Black (From Logo Owl) */
+  --gold: #FFFFFF;             /* Replaced Orange with Pure Crisp White / Off-White */
 
   /* Layout Constants */
   --card-radius: 16px;
@@ -199,9 +196,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(212, 168, 79, 0.15);
-  border: 1px solid var(--gold);
-  color: var(--gold);
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #FFFFFF !important;
   font-weight: 700;
   font-size: 0.85rem;
   padding: 6px 16px;
@@ -220,7 +217,8 @@ body {
 }
 
 .highlight-gold {
-  color: var(--gold);
+  color: #FFFFFF !important; /* Clean white text highlight instead of orange */
+  text-decoration: underline decoration-color var(--light-accent);
 }
 
 .hero-lead {
@@ -240,16 +238,17 @@ body {
 }
 
 .btn-primary-hero {
-  background-color: var(--gold);
-  color: var(--primary);
+  background-color: #121A14 !important;
+  color: #FFFFFF !important;
   font-weight: 800;
   padding: 14px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);;
   font-size: 1rem;
-  box-shadow: 0 6px 20px rgba(212, 168, 79, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
 .btn-primary-hero:hover {
-  background-color: #e5b75a;
+  background-color: #000000 !important;
   transform: translateY(-2px);
 }
 
@@ -503,8 +502,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: var(--gold);
-  color: var(--primary);
+  background-color: #121A14;
+  color: #FFFFFF;
   padding: 12px 26px;
   text-decoration: none;
   font-weight: 700;
@@ -519,6 +518,7 @@ body {
 .btn:hover:not([disabled]) { 
   transform: translateY(-2px); 
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  background-color: #000000;
 }
 
 .btn-grab {
