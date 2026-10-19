@@ -2020,11 +2020,25 @@ footer {
   }
 
   .card-badge {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
-    top: 6px;
-    right: 6px;
+    width: 30px !important;
+    height: 30px !important;
+    top: 8px !important;
+    right: 8px !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+  }
+
+  .card-badge .fa-star,
+  .card-badge .badge-favorite-icon {
+    color: #F59E0B !important; /* Deep Golden Amber */
+    font-size: 0.82rem !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .page-section {
