@@ -109,7 +109,12 @@ body {
   display: inline-block;
 }
 
-.status-badge.open { background-color: #2e7d32; }
+.status-badge.open { 
+  background-color: #2e7d32; 
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-weight: 800;
+}
 .status-badge.closed { background-color: #c62828; }
 
 .nav-links {
@@ -175,7 +180,7 @@ body {
 }
 
 .hero-container {
-  max-width: 1200px;
+  max-width: 1080px;
   width: 100%;
   margin: 0 auto;
   display: grid;
@@ -360,109 +365,145 @@ body {
   color: var(--light-accent);
 }
 
-/* ANNOUNCEMENT HERO SLIDER SECTION BELOW MAIN HERO (MOBILE TOUCH SWIPE READY) */
+/* ===========================================================================
+   ANNOUNCEMENT HERO SLIDER SECTION (OPTIMIZED SECTION SIZE & FULL ARTWORK FIT)
+   =========================================================================== */
 .announcement-bar-section {
-  background-color: #002200;
-  border-top: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-  padding: 30px 0;
+  background-color: var(--alt-bg);
+  padding: 50px 0;
   position: relative;
   overflow: hidden;
 }
 
 .announcement-wrapper {
-  max-width: 1100px;
+  max-width: 1040px; /* Expands width comfortably for desktop displays */
   margin: 0 auto;
   position: relative;
-  min-height: 220px;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 
 .hero-slider {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   touch-action: pan-y;
   user-select: none;
+  background-color: #FFFFFF;
 }
 
+/* TRACK & SLIDES */
 .hero-slider-track {
   display: flex;
   width: 100%;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
 
 .hero-slide {
   min-width: 100%;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   flex-shrink: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px 50px 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.85) 100%);
-  z-index: 1;
+.split-slide-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Gives artwork generous space */
+  align-items: stretch;
+  background-color: #FFFFFF;
+}
+
+.split-slide-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Maintains square ratio to fit full square/poster banner art */
+  max-height: 480px;  /* Sweet spot height: prevents screen overlap while scrolling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FAF8F2;
+  overflow: hidden;
+}
+
+.split-slide-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Guarantees whole photo fits cleanly with 0% cropped */
+  object-position: center;
+  display: block;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 780px;
-  width: 100%;
-  margin: 0 auto;
-  background: rgba(0, 25, 0, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 24px 28px;
-  border-radius: 20px;
-  border: 1px solid rgba(212, 168, 79, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 40px 48px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #FFFFFF;
 }
 
 .hero-tag {
   display: inline-block;
-  background-color: var(--gold);
-  color: var(--primary);
+  background-color: #111A13;
+  color: #FFFFFF;
   font-weight: 800;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  padding: 4px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   letter-spacing: 1px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .hero-content h1 {
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
-  margin: 6px 0 10px 0;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  margin: 0 0 14px 0;
   font-weight: 800;
   line-height: 1.25;
-  color: #ffffff;
+  color: var(--primary);
 }
 
 .hero-content p {
-  font-size: clamp(0.88rem, 1.5vw, 1rem);
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
   margin-bottom: 0;
-  color: #F8F5E9;
-  max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
+  color: #444444;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .announcement-wrapper {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .split-slide-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .split-slide-img-box {
+    width: 100%;
+    height: 240px;
+    min-height: 240px;
+  }
+  .split-slide-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hero-content {
+    padding: 20px 18px 32px 18px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-content h1 {
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+  }
+  .hero-content p {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
 }
 
 .slider-dots {
@@ -524,7 +565,15 @@ body {
 
 .btn-grab {
   background-color: #00b14f;
-  color: white;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-grab:hover {
+  background-color: #008f3f !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
 }
 
 .social-buttons-container {
@@ -1064,13 +1113,16 @@ body {
 }
 
 .btn-secondary-modal {
-  background-color: var(--alt-bg);
-  color: var(--chocolate);
+  background-color: #E8F3EB;
+  color: #111A13 !important;
   border: 1px solid var(--light-accent);
 }
 
-.btn-secondary-modal:hover {
-  background-color: #e2d7c0;
+.btn-secondary-modal:hover,
+.btn-secondary-modal:focus,
+.btn-secondary-modal:active {
+  background-color: #111A13 !important;
+  color: #FFFFFF !important;
 }
 
 /* MAP CONTAINER */
@@ -1125,13 +1177,13 @@ body {
 
 .about-carousel {
   position: relative;
-  max-width: 880px;
+  max-width: 1080px;
   margin: 0 auto 16px auto;
-  border-radius: var(--card-radius);
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-shadow-hover);
   background: var(--card-bg);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .about-slide {
@@ -1144,7 +1196,7 @@ body {
 
 .about-img {
   width: 100%;
-  height: 290px;
+  height: 380px;
   object-fit: cover;
 }
 
@@ -1173,16 +1225,17 @@ body {
   background: rgba(0, 75, 0, 0.85);
   color: white;
   border: none;
-  width: 38px;
-  height: 38px;
-  font-size: 1rem;
+  width: 42px;
+  height: 42px;
+  font-size: 1.1rem;
   cursor: pointer;
   border-radius: 50%;
   transition: var(--transition-smooth);
-  z-index: 5;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .about-btn:hover {
@@ -1190,8 +1243,14 @@ body {
   transform: translateY(-50%) scale(1.1);
 }
 
-.about-btn.prev { left: 14px; }
-.about-btn.next { right: 14px; }
+/* Position arrows safely on the left and right borders of the image box side */
+.about-btn.prev { 
+  left: 16px; 
+}
+.about-btn.next { 
+  /* Positions the next arrow right between the image box and text area */
+  left: calc(50% - 21px); 
+}
 
 .about-dots {
   display: flex;
@@ -1317,7 +1376,7 @@ body {
   padding: 20px;
   border-radius: var(--card-radius);
   border: 1px dashed var(--secondary);
-  max-width: 800px;
+  max-width: 1080px;
   margin: 0 auto 32px auto;
   box-shadow: var(--card-shadow);
 }
@@ -1865,6 +1924,11 @@ footer {
   .hero-text-side {
     align-items: center;
     text-align: center;
+  }
+
+  .about-btn.next {
+    right: 16px;
+    left: auto;
   }
 
   .hero-actions {

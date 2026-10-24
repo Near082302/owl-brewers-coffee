@@ -68,7 +68,7 @@ function initNavbar() {
 }
 
 /* ===========================================================================
-   2. STATIC STORE STATUS (Always shows OPEN for pitches)
+   2. STATIC STORE STATUS
    =========================================================================== */
 function initStaticStoreStatus() {
   const badge = document.getElementById('store-status-badge') || document.getElementById('store-status');
@@ -79,17 +79,51 @@ function initStaticStoreStatus() {
 }
 
 /* ===========================================================================
-   3. HERO BANNER SLIDER (Pure CSS/DOM Carousel)
+   3. HERO BANNER SLIDER (With Touch/Swipe Support for Mobile)
    =========================================================================== */
 let currentSlideIndex = 0;
 let slideInterval = null;
 
 function initHeroBannerSlider() {
   const track = document.getElementById('hero-slider-track');
+  const sliderContainer = document.querySelector('.hero-slider');
   if (!track) return;
+  
   const totalSlides = track.children.length;
   if (totalSlides > 1) {
     startAutoSlide(totalSlides);
+  }
+
+  // --- SWIPE GESTURE SUPPORT ---
+  if (sliderContainer) {
+    let startX = 0;
+    let endX = 0;
+
+    sliderContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    sliderContainer.addEventListener('touchmove', (e) => {
+      endX = e.touches[0].clientX;
+    }, { passive: true });
+
+    sliderContainer.addEventListener('touchend', () => {
+      if (!startX || !endX) return;
+      const diffX = startX - endX;
+      
+      // Minimum drag distance required (50px)
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          // Swiped left -> Next slide
+          setSlide(currentSlideIndex + 1);
+        } else {
+          // Swiped right -> Previous slide
+          setSlide(currentSlideIndex - 1);
+        }
+      }
+      startX = 0;
+      endX = 0;
+    });
   }
 }
 
@@ -121,7 +155,7 @@ function startAutoSlide(total) {
 }
 
 /* ===========================================================================
-   4. STATIC MENU SYSTEM (Filters HTML cards directly)
+   4. STATIC MENU SYSTEM
    =========================================================================== */
 function initStaticMenuSystem() {
   const searchInput = document.getElementById('menu-search');
@@ -144,7 +178,6 @@ function initStaticMenuSystem() {
     });
   });
   
-  // Attach click events to static cards to trigger the detail modal
   const cards = document.querySelectorAll('#menu-grid .card');
   cards.forEach((card, idx) => {
     card.setAttribute('data-id', idx);
@@ -228,7 +261,6 @@ function openStaticItemModal(item) {
   const catLower = (item.category || '').toLowerCase();
   const isFood = catLower.includes('pasta') || catLower.includes('croffle');
 
-  // Basic Details
   document.getElementById('modal-item-img').src = item.imgSrc;
   document.getElementById('modal-item-category').textContent = item.category.toUpperCase();
   document.getElementById('modal-item-name').textContent = item.name;
@@ -237,7 +269,6 @@ function openStaticItemModal(item) {
   const priceEl = document.getElementById('modal-item-price');
   if (priceEl) priceEl.textContent = item.price;
 
-  // DYNAMIC OPTIONS BOX (Drink vs Food)
   const optionsBox = document.getElementById('modal-options-container');
   if (optionsBox) {
     if (isFood) {
@@ -267,7 +298,6 @@ function openStaticItemModal(item) {
     }
   }
 
-  // DYNAMIC PREPARATION / KITCHEN NOTES (Drink vs Food)
   const allergenList = document.getElementById('modal-allergen-list');
   if (allergenList) {
     if (isFood) {
@@ -292,16 +322,46 @@ function closeItemDetailModal() {
 }
 
 /* ===========================================================================
-   6. ABOUT CAROUSEL & STATS COUNTER
+   6. ABOUT CAROUSEL & STATS COUNTER (With Touch/Swipe Support)
    =========================================================================== */
 let currentAboutSlide = 0;
 
 function initAboutCarousel() {
   const prevBtn = document.getElementById('about-prev');
   const nextBtn = document.getElementById('about-next');
+  const aboutContainer = document.querySelector('.about-carousel');
 
   if (prevBtn) prevBtn.addEventListener('click', () => changeAboutSlide(-1));
   if (nextBtn) nextBtn.addEventListener('click', () => changeAboutSlide(1));
+
+  // --- SWIPE GESTURE SUPPORT FOR ABOUT CAROUSEL ---
+  if (aboutContainer) {
+    let startX = 0;
+    let endX = 0;
+
+    aboutContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    aboutContainer.addEventListener('touchmove', (e) => {
+      endX = e.touches[0].clientX;
+    }, { passive: true });
+
+    aboutContainer.addEventListener('touchend', () => {
+      if (!startX || !endX) return;
+      const diffX = startX - endX;
+
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          changeAboutSlide(1);  // Swiped left -> Next
+        } else {
+          changeAboutSlide(-1); // Swiped right -> Prev
+        }
+      }
+      startX = 0;
+      endX = 0;
+    });
+  }
 }
 
 function changeAboutSlide(direction) {
@@ -360,7 +420,7 @@ function initAboutStatsCounter() {
 }
 
 /* ===========================================================================
-   7. PROMO VOUCHER (Simulated for Pitch Demos)
+   7. PROMO VOUCHER
    =========================================================================== */
 function initPromoForm() {
   const followLinks = document.querySelectorAll('.social-follow-link');
@@ -397,7 +457,6 @@ function initPromoForm() {
         alert('Please enter your name.');
         return;
       }
-      // Simulated mock ticket for client pitch demo
       promoForm.classList.add('hide');
       const ticket = document.getElementById('digital-ticket');
       const codeDisplay = document.getElementById('ticket-code-display');

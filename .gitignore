@@ -1,3 +1,2 @@
-# Ignore local images folder to keep repo lightweight
-images/
-
+.DS_Store
+Thumbs.db
