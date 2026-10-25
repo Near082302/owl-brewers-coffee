@@ -1959,6 +1959,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+  .about-btn {
+    display: none !important;
+  }
   .hamburger {
     display: block;
   }
